@@ -1,14 +1,17 @@
 import express from 'express';
-import ClassController from './controllers/ClassesController';
-import ConnectionsController from './controllers/ConnectionsController';
+import Controller from './controllers/Controller';
+
 
 const routes = express.Router();
-const classesControllers = new ClassController();
-const connectionsController = new ConnectionsController();
+const controller = new Controller();
 
-routes.post('/classes', classesControllers.create);
-routes.get('/classes', classesControllers.index);
-routes.post('/connections', connectionsController.create);
-routes.get('/connections', connectionsController.index);
+
+routes.get('/', controller.testLink);
+routes.post('/oximetros', controller.updateAllOximeters);
+routes.get('/oximetros', controller.indexOximeter);
+routes.get('/oximetros/:name', controller.getValorOxi);
+routes.post('/oximetros/:name', controller.updateOximeter);
+routes.get('/pacientes', controller.getPacientes);
+routes.get('/termometros', controller.getTermometros);
 
 export default routes;
